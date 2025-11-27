@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk – DelizFruit</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <img src="Logo DF.png" class="logo-img" alt="Logo">
+        <div class="search-box">
+            <input id="searchInput" type="text" placeholder="Cari produk...">
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="produk.html" class="active">Produk</a>
+        <a href="kategori.html">Kategori</a>
+        <a href="tentang.html">Tentang</a>
+    </nav>
+
+    <div class="nav-right">
+        <a id="loginButton" class="login-btn" href="login.html">Login</a>
+        <div id="userArea" class="user-area" style="display:none;">
+            <div id="userCircle" class="user-circle">U</div>
+            <a id="logoutButton" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</header>
+
+<!-- SECTION PRODUK -->
+<section class="produk-container">
+
+    <h2 class="produk-title">Semua Produk</h2>
+
+    <!-- GRID PRODUK -->
+    <div id="produkList" class="produk-grid"></div>
+
+</section>
+
+<script>
+// =======================
+// DATA PRODUK (15 ITEM)
+// =======================
+const produk = [
+    { id: 1, name: "DelizFruit Banana Crisp 100g", price: "20.000", img: "Pisang 1.png" },
+    { id: 2, name: "DelizFruit Banana Crisp 250g", price: "50.000", img: "Pisang 2.png" },
+    { id: 3, name: "DelizFruit Banana Crisp 500g", price: "100.000", img: "Pisang 3.png" },
+
+    { id: 4, name: "DelizFruit Pineapple Crisp 100g", price: "20.000", img: "Nanas 1.png" },
+    { id: 5, name: "DelizFruit Pineapple Crisp 100g", price: "50.000", img: "Nanas 2.png" },
+    { id: 6, name: "DelizFruit Pineapple Crisp 100g", price: "100.000", img: "Nanas 3.png" },
+
+    { id: 7, name: "DelizFruit Mango Crisp 100g", price: "20.000", img: "Mangga 1.png" },
+    { id: 8, name: "DelizFruit Mango Crisp 150g", price: "50.000", img: "Mangga 2.png" },
+    { id: 9, name: "DelizFruit Mango Crisp 100g", price: "100.000", img: "Mangga 3.png" },
+
+    { id: 10, name: "DelizFruit Tropical Crisp Mini Pack", price: "20.000", img: "Alpukat 1.png" },
+    { id: 11, name: "DelizFruit Mango Crunchy 150g", price: "50.000", img: "Alpukat 2.png" },
+    { id: 12, name: "DelizFruit Premium Mix Box", price: "100.000", img: "Alpukat 3.png" },
+
+    { id: 13, name: "DelizFruit Avocado Crisp 100g", price: "25.000", img: "Mix 1.png" },
+    { id: 14, name: "DelizFruit Avocado Crisp 100g", price: "55.000", img: "Mix 2.png" },
+    { id: 15, name: "DelizFruit Avocado Combo Pack", price: "110.000", img: "Mix 3.png" }
+];
+
+// Render
+const produkList = document.getElementById("produkList");
+
+function tampilkanProduk(data) {
+    produkList.innerHTML = "";
+
+    data.forEach(p => {
+        produkList.innerHTML += `
+            <div class="produk-card" onclick="pesanWhatsapp('${p.name}', '${p.price}')">
+                <img src="${p.img}" alt="${p.name}">
+                <h3>${p.name}</h3>
+                <p class="harga">Rp ${p.price}</p>
+                <button class="btn-detail">Pesan Sekarang</button>
+            </div>
+        `;
+    });
+}
+
+tampilkanProduk(produk);
+
+// Search
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    const keyword = this.value.toLowerCase();
+    const hasil = produk.filter(p => p.name.toLowerCase().includes(keyword));
+    tampilkanProduk(hasil);
+});
+
+// WA ORDER
+function pesanWhatsapp(nama, harga) {
+    const nomor = "6281227954471"; // GANTI DENGAN NOMOR NUR
+
+    const text = `Halo, saya ingin memesan:
+Nama Produk: ${nama}
+Harga: Rp ${harga}
+Jumlah: 1
+Kode Promo: (isi jika ada)
+
+Terima kasih 🙏`;
+
+    const url = `https://wa.me/${nomor}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+}
+</script>
+
+<!-- NAVBAR SCROLL -->
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) navbar.classList.add("scrolled");
+    else navbar.classList.remove("scrolled");
+});
+</script>
+
+</body>
+</html>

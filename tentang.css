@@ -1,0 +1,181 @@
+/* ====== ABOUT SECTION STYLE ====== */
+.about-section {
+    padding: 80px 20px;
+    background: #fafafa;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ff8c32;
+    margin-bottom: 20px;
+}
+
+.about-desc {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 40px;
+}
+
+.about-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid #ff8c32;
+}
+
+.about-card h3 {
+    margin-top: 0;
+    color: #ff8c32;
+    font-size: 22px;
+}
+
+.about-card ul {
+    margin: 10px 0 0;
+    padding-left: 20px;
+}
+
+.about-card li {
+    margin-bottom: 8px;
+}
+
+.about-story {
+    margin-top: 40px;
+    background: #fff9f3;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #ffe1c7;
+}
+
+.about-story h3 {
+    color: #ff8c32;
+    margin-bottom: 10px;
+}
+
+.about-story p {
+    color: #444;
+    line-height: 1.7;
+}
+
+/* ========================= */
+/*        TESTIMONI STYLE    */
+/* ========================= */
+
+.testimoni {
+    padding: 70px 10%;
+    text-align: center;
+}
+
+.testimoni h2 {
+    font-size: 30px;
+    color: #b45309; /* Orange gelap */
+    font-weight: 700;
+}
+
+.testi-sub {
+    color: #78350f;
+    margin-top: 5px;
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+/* LIST BOX */
+.testi-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 26px;
+    margin-top: 35px;
+}
+
+/* CARD TESTIMONI */
+.testi-box {
+    width: 270px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #f0d4b0;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.testi-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.10);
+}
+
+/* PROFILE IMAGE */
+.testi-img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border: 2px solid #f59e0b;
+}
+
+/* ISI TESTIMONI */
+.testi-box p {
+    color: #475569;
+    font-style: italic;
+    margin: 12px 0;
+    font-size: 15px;
+}
+
+.testi-box span {
+    margin-top: 5px;
+    display: block;
+    font-weight: 600;
+    color: #b45309;
+    font-size: 14px;
+}
+
+/* BUTTONS */
+.testi-buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.lihat-testi,
+.tambah-testi {
+    padding: 12px 20px;
+    background: #f59e0b;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.25s ease;
+}
+
+.lihat-testi:hover,
+.tambah-testi:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+}
+
+/* ========================= */
+/*    RESPONSIVE TESTIMONI   */
+/* ========================= */
+@media (max-width: 768px) {
+    .testi-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testi-box {
+        width: 90%;
+    }
+}

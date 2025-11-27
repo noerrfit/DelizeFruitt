@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - DelizeFruit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>Daftar Akun Baru</h2>
+
+    <form id="registerForm">
+        <input type="text" id="username" placeholder="Buat Username" required>
+        <input type="password" id="password" placeholder="Buat Password" required>
+        <button type="submit" class="login-btn">Daftar</button>
+    </form>
+
+    <p>Sudah punya akun? <a href="login.html">Login</a></p>
+</div>
+
+<script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+
+        localStorage.setItem("df_username", user);
+        localStorage.setItem("df_password", pass);
+
+        alert("Akun berhasil dibuat!");
+        window.location.href = "login.html";
+    });
+</script>
+
+</body>
+</html>

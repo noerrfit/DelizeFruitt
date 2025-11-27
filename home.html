@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - DelizeFruit</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-left">
+        <img src="Logo DF.png" class="logo-img" alt="Logo">
+
+        <div class="search-box">
+            <input type="text" placeholder="Cari produk...">
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        <a href="home.html" class="active">Home</a>
+        <a href="produk.html">Produk</a>
+        <a href="kategori.html">Kategori</a>
+        <a href="tentang.html">Tentang</a>
+    </nav>
+
+    <div class="nav-right">
+        <a id="loginButton" class="login-btn" href="login.html">Login</a>
+
+        <div id="userArea" class="user-area" style="display:none;">
+            <div id="userCircle" class="user-circle">U</div>
+            <button id="logoutButton" class="logout-btn">Logout</button>
+        </div>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>DelizeFruit</h1>
+        <p>Segar, sehat, dan langsung dari tangan petani pilihan.</p>
+        <a href="produk.html" class="hero-btn">Belanja Sekarang</a>
+    </div>
+
+    <img src="segar segar.jpg" class="hero-img" alt="Buah Segar">
+</section>
+
+<!-- KELEBIHAN -->
+<section class="kelebihan">
+    <h2>Kelebihan Produk Kami</h2>
+
+    <div class="kelebihan-container">
+        <div class="box">
+            <img src="fresh.png" alt="">
+            <h3>Selalu Fresh</h3>
+            <p>Buah dipanen langsung dan diolah menjadi chips dalam keadaan segar.</p>
+        </div>
+
+        <div class="box">
+            <img src="quality.png" alt="">
+            <h3>Kualitas Premium</h3>
+            <p>Dipilih dari panen terbaik dan terjamin mutunya.</p>
+        </div>
+
+        <div class="box">
+            <img src="fast.png" alt="">
+            <h3>Pengiriman Cepat</h3>
+            <p>Pesanan diproses dan dikirim dalam waktu singkat.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROMOSI -->
+<section class="promo">
+    <h2>Promosi</h2>
+    <p>Diskon spesial untuk produk tertentu di halaman kategori!</p>
+    <a href="kategori.html" class="promo-btn">Lihat Promosi</a>
+</section>
+
+<!-- TESTIMONI -->
+<section class="testimoni">
+    <h2>Testimoni Pelanggan</h2>
+
+    <div class="testi-list">
+        <div class="testi-box">
+            <p>"Buahnya seger banget, pengiriman cepat!"</p>
+            <span>- Rina</span>
+        </div>
+
+        <div class="testi-box">
+            <p>"Harga murah kualitas mewah. Puas pokoknya!"</p>
+            <span>- Budi</span>
+        </div>
+    </div>
+
+    <div class="testi-buttons">
+        <a href="testi.html" class="lihat-testi">Lihat Semua Testi</a>
+    </div>
+</section>
+
+<!-- SCRIPT LOGIN -->
+<script>
+    const user = JSON.parse(localStorage.getItem("user"));
+    const loginBtn = document.getElementById("loginButton");
+    const userArea = document.getElementById("userArea");
+    const userCircle = document.getElementById("userCircle");
+    const logoutBtn = document.getElementById("logoutButton");
+
+    // Jika user sudah login
+    if (user) {
+        loginBtn.style.display = "none";
+        userArea.style.display = "flex";
+        userCircle.textContent = user.name.charAt(0).toUpperCase();
+    }
+
+    // Logout
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("user");
+        window.location.reload();
+    });
+</script>
+
+<section class="testimoni">
+    <h2>Testimoni Pelanggan</h2>
+    <p class="testi-sub">Apa kata mereka tentang DelizFruit?</p>
+
+    <div id="testiList" class="testi-list"></div>
+
+    <div class="testi-buttons">
+        <a href="testi.html" class="tambah-testi">Tambah Testi</a>
+    </div>
+</section>
+
+<script>
+    // Ambil data testimoni
+    const storedTesti = JSON.parse(localStorage.getItem("testimoni")) || [];
+
+    const testiContainer = document.getElementById("testiList");
+
+    // Render testimoni
+    storedTesti.slice(-3).forEach(testi => {   // hanya 3 terbaru
+        const box = document.createElement("div");
+        box.classList.add("testi-box");
+
+        box.innerHTML = `
+            <img src="profil1.png" class="testi-img">
+            <p>"${testi.pesan}"</p>
+            <span>- ${testi.nama}</span>
+        `;
+        testiContainer.appendChild(box);
+    });
+</script>
+
+
+<script>
+function resetTesti() {
+    localStorage.removeItem("testimoni");
+    alert("Semua testimoni berhasil dihapus!");
+    location.reload();
+}
+</script>
+
+<button class="reset-btn" onclick="resetTesti()">Hapus Semua Testi</button>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori – Promo DelizFruit</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <img src="Logo DF.png" class="logo-img" alt="Logo">
+        <div class="search-box">
+            <input type="text" placeholder="Cari promo...">
+        </div>
+    </div>
+
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="produk.html">Produk</a>
+        <a href="kategori.html" class="active">Kategori</a>
+        <a href="tentang.html">Tentang</a>
+    </nav>
+
+    <div class="nav-right">
+        <a id="loginButton" class="login-btn" href="login.html">Login</a>
+        <div id="userArea" class="user-area" style="display:none;">
+            <div id="userCircle" class="user-circle">U</div>
+            <a id="logoutButton" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</header>
+
+<!-- SECTION PROMO -->
+<section class="promo-container">
+
+    <h2 class="promo-title">Promo & Kode Diskon</h2>
+
+    <div class="promo-list">
+
+        <!-- PROMO 1 -->
+        <div class="promo-card">
+            <h3>Tropical Crisp Diskon 10%</h3>
+            <p>Berlaku untuk semua varian Tropical Crisp (100g, 250g, 500g).</p>
+            <div class="promo-code">TROPICAL10</div>
+            <button onclick="salinKode('TROPICAL10')" class="btn-copy">Salin Kode</button>
+        </div>
+
+        <!-- PROMO 2 -->
+        <div class="promo-card">
+            <h3>Combo Mix Hemat 15%</h3>
+            <p>Diskon 15% untuk pembelian minimal 2 produk (campur apa saja).</p>
+            <div class="promo-code">COMBOMIX15</div>
+            <button onclick="salinKode('COMBOMIX15')" class="btn-copy">Salin Kode</button>
+        </div>
+
+        <!-- PROMO 3 -->
+        <div class="promo-card">
+            <h3>Diskon 20% Pembeli Baru</h3>
+            <p>Khusus pertama kali belanja di DelizFruit.</p>
+            <div class="promo-code">DELIZFIRST20</div>
+            <button onclick="salinKode('DELIZFIRST20')" class="btn-copy">Salin Kode</button>
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+// Copy kode promo
+function salinKode(kode) {
+    navigator.clipboard.writeText(kode);
+    alert("Kode promo '" + kode + "' berhasil disalin!");
+}
+
+// User auth display
+const user = JSON.parse(localStorage.getItem("user"));
+const loginBtn = document.getElementById("loginButton");
+const userArea = document.getElementById("userArea");
+const userCircle = document.getElementById("userCircle");
+const logoutBtn = document.getElementById("logoutButton");
+
+if (user) {
+    loginBtn.style.display = "none";
+    userArea.style.display = "flex";
+    userCircle.textContent = user.name.charAt(0).toUpperCase();
+}
+
+logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+});
+
+// Navbar scroll effect
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) navbar.classList.add("scrolled");
+    else navbar.classList.remove("scrolled");
+});
+</script>
+
+</body>
+</html>

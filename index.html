@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DelizeFruit</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <!-- KIRI -->
+    <div class="nav-left">
+        <img src="Logo DF.png" class="logo-img" alt="Logo">
+
+        <div class="search-box">
+            <input type="text" placeholder="Cari produk...">
+        </div>
+    </div>
+
+    <!-- MENU -->
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="produk.html">Produk</a>
+        <a href="kategori.html">Kategori</a>
+        <a href="tentang.html">Tentang</a>
+    </nav>
+
+    <!-- KANAN -->
+    <div class="nav-right">
+
+        <!-- LOGIN (muncul kalau belum login) -->
+        <a id="loginButton" class="login-btn" href="login.html">Login</a>
+
+        <!-- USER BULAT + LOGOUT (muncul kalau sudah login) -->
+        <div id="userArea" class="user-area" style="display:none;">
+            <div id="userCircle" class="user-circle">U</div>
+            <a id="logoutButton" class="logout-btn">Logout</a>
+        </div>
+
+    </div>
+
+</header>
+
+<script>
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const loginBtn = document.getElementById("loginButton");
+    const userArea = document.getElementById("userArea");
+    const userCircle = document.getElementById("userCircle");
+    const logoutBtn = document.getElementById("logoutButton");
+
+    if (user) {
+        // sembunyikan login
+        loginBtn.style.display = "none";
+
+        // tampilkan area pengguna
+        userArea.style.display = "flex";
+
+        // huruf pertama nama
+        userCircle.textContent = user.name.charAt(0).toUpperCase();
+    }
+
+    // tombol logout
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("user");
+        window.location.reload();
+    });
+
+</script>
+
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+</script>
+
+</body>
+</html>

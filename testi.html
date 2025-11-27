@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimoni Pelanggan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2 style="text-align:center; margin-top:40px; color:#d97706;">Semua Testimoni</h2>
+
+<div id="allTesti" class="testi-list" style="padding:20px;"></div>
+
+<hr style="margin:40px auto; width:80%; opacity:0.5;">
+
+<h3 style="text-align:center; color:#b45309;">Tambah Testimoni</h3>
+
+<div style="max-width:400px; margin:25px auto;">
+    <input id="nama" type="text" placeholder="Nama Anda" style="width:100%; padding:12px; margin-bottom:12px; border-radius:10px; border:1px solid #e2e8f0;">
+    <textarea id="pesan" placeholder="Tulis testimoni Anda..." style="width:100%; padding:12px; height:120px; border-radius:10px; border:1px solid #e2e8f0;"></textarea>
+    <button id="kirimTesti" style="width:100%; padding:12px; margin-top:10px; background:#f59e0b; border:none; color:white; font-weight:600; border-radius:12px; cursor:pointer;">
+        Kirim Testimoni
+    </button>
+</div>
+
+<script>
+    const allTestiBox = document.getElementById("allTesti");
+    let testimoni = JSON.parse(localStorage.getItem("testimoni")) || [];
+
+    // Render semua testimoni
+    function renderTesti() {
+        allTestiBox.innerHTML = "";
+        testimoni.forEach(t => {
+            const box = document.createElement("div");
+            box.classList.add("testi-box");
+            box.innerHTML = `
+                <img src="profil1.png" class="testi-img">
+                <p>"${t.pesan}"</p>
+                <span>- ${t.nama}</span>
+            `;
+            allTestiBox.appendChild(box);
+        });
+    }
+
+    renderTesti();
+
+    // Tambah testimoni
+    document.getElementById("kirimTesti").addEventListener("click", () => {
+        const nama = document.getElementById("nama").value.trim();
+        const pesan = document.getElementById("pesan").value.trim();
+
+        if (nama === "" || pesan === "") {
+            alert("Nama dan pesan harus diisi.");
+            return;
+        }
+
+        const newTesti = { nama, pesan };
+        testimoni.push(newTesti);
+
+        // simpan ke LocalStorage
+        localStorage.setItem("testimoni", JSON.stringify(testimoni));
+
+        alert("Testimoni berhasil dikirim!");
+        window.location.href = "home.html"; // balik ke home otomatis
+    });
+</script>
+
+</body>
+</html>
